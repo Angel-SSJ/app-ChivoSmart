@@ -7,13 +7,13 @@ export const formStyles = StyleSheet.create({
         alignItems: 'center',
         padding: 20,
         width: '100%',
-        backgroundColor: 'white',
+        backgroundColor: '#2C2B2C',
     },
     form: {
         width: '100%',
-        maxWidth: 400,
+        maxWidth: 500,
         padding: 20,
-        backgroundColor: 'white',
+        backgroundColor: '#2C2B2C',
         borderRadius: 8,
     },
     input: {
@@ -32,17 +32,34 @@ export const formStyles = StyleSheet.create({
     },
     label: {
         fontSize: 16,
-        color: '#333',
-        marginBottom: 8,
+        color: '#F7F7F1',
+        marginBottom: 5,
+    },
+    title_one:{
+        fontSize:40,
+        color:"#F7F7F1",
+        textAlign:'center',
+        justifyContent:'center',
+        padding:30,
+        fontWeight:'condensedBold',
+    },
+    labelBrand:{
+        fontSize:40,
+        color:"#F7F7F1",
+        textAlign:'center',
+        justifyContent:'center',
+        padding:40,
+
+
     },
     button: {
-        backgroundColor: '#007BFF',
+        backgroundColor: '#4E6C8B',
         paddingVertical: 15,
         borderRadius: 8,
         marginTop: 10,
     },
     buttonText: {
-        color: 'white',
+        color: '#E1DED4',
         fontSize: 18,
         fontWeight: 'bold',
         textAlign: 'center',
@@ -55,7 +72,7 @@ export const formStyles = StyleSheet.create({
     linkText: {
         textAlign: 'center',
         marginTop: 15,
-        color: '#007BFF',
+        color: '#E1DED4',
         fontSize: 16,
     },
 });

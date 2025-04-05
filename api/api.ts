@@ -9,11 +9,13 @@ const API = axios.create({
 });
 
 export const getProfile = async () => {
+
     try {
-        const response = await API.get('/profile');
+        const response = await API.get('/auth/profile');
         return response.data;
     } catch (error) {
-        throw new Error('No se pudo obtener el perfil');
+
+        throw new Error('No se pudo obtener el perfil', );
     }
 };
 

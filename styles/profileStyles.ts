@@ -5,7 +5,7 @@ export const profileStyles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#2C2B2C',
         padding: 20,
     },
     title: {
@@ -17,6 +17,7 @@ export const profileStyles = StyleSheet.create({
     profileContainer: {
         marginBottom: 20,
     },
+
     label: {
         fontSize: 18,
         color: '#333',

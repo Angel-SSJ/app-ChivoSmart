@@ -31,7 +31,7 @@ export default function Login() {
 
     const handleLogin = async (values: { email: string; password: string }) => {
         try {
-            const response = await API.post<AuthResponse>('/login', values);
+            const response = await API.post<AuthResponse>('/auth/login', values);
             dispatch(setCredentials(response.data));
             await saveSession(response.data);
             if (isReady) {
@@ -55,6 +55,7 @@ export default function Login() {
             >
                 {({ handleChange, handleSubmit, values, errors, touched }) => (
                     <View style={formStyles.form}>
+                        <Text style={formStyles.labelBrand}>ChivoSmart</Text>
                         <Text style={formStyles.label}>Email</Text>
                         <TextInput
                             placeholder="Introduce tu email"

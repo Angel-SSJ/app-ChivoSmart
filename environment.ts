@@ -1,1 +1,1 @@
-export const BASE_URL = "https://api.beelder.elaniin.dev/api";
+export const BASE_URL = "https://9c6cd635c31f.ngrok.app/"

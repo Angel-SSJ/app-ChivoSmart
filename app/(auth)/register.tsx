@@ -7,9 +7,11 @@ import { formStyles } from '@/styles/formStyles';
 import Toast from "react-native-toast-message";
 
 const registerSchema = Yup.object().shape({
+    first_name:Yup.string().required('Requerido'),
+    last_name:Yup.string().required('Requerido'),
     email: Yup.string().email('Email inválido').required('Requerido'),
     password: Yup.string().min(6, 'Mínimo 6 caracteres').required('Requerido'),
-    confirmPassword: Yup.string()
+    confirm_password: Yup.string()
         .oneOf([Yup.ref('password')], 'Las contraseñas no coinciden')
         .required('Requerido'),
 });
@@ -17,9 +19,9 @@ const registerSchema = Yup.object().shape({
 export default function Register() {
     const router = useRouter();
 
-    const handleRegister = async (values: { email: string; password: string }) => {
+    const handleRegister = async (values: { email: string; password: string;first_name:string; last_name:string }) => {
         try {
-            await API.post('/register', values); // adapt to your API fields
+            await API.post('/auth/register', values); // adapt to your API fields
             router.replace('/login');
         } catch (err: any) {
             Toast.show({
@@ -33,12 +35,41 @@ export default function Register() {
     return (
         <View style={formStyles.container}>
             <Formik
-                initialValues={{ email: '', password: '', confirmPassword: '' }}
+                initialValues={{ email: '', password: '', confirm_password: '' , last_name:'', first_name:'', }}
                 validationSchema={registerSchema}
                 onSubmit={handleRegister}
             >
                 {({ handleChange, handleSubmit, values, errors, touched }) => (
                     <View style={formStyles.form}>
+                        <Text style={formStyles.labelBrand}>ChivoSmart</Text>
+                        <Text style={formStyles.label}>Nombre</Text>
+                        <TextInput
+                            placeholder="Introduce tu nombre"
+                            value={values.first_name}
+                            onChangeText={handleChange('first_name')}
+                            autoCapitalize="none"
+                            keyboardType="default"
+                            style={[
+                                formStyles.input,
+                                touched.first_name && errors.first_name && formStyles.inputError,
+                            ]}
+                        />
+                        {touched.first_name && errors.first_name && <Text style={formStyles.errorText}>{errors.first_name}</Text>}
+
+                        <Text style={formStyles.label}>Apellido</Text>
+                        <TextInput
+                            placeholder="Introduce tu apellido"
+                            value={values.last_name}
+                            onChangeText={handleChange('last_name')}
+                            autoCapitalize="none"
+                            keyboardType={'default'}
+                            style={[
+                                formStyles.input,
+                                touched.last_name && errors.last_name && formStyles.inputError,
+                            ]}
+                        />
+                        {touched.last_name && errors.last_name && <Text style={formStyles.errorText}>{errors.last_name}</Text>}
+
                         <Text style={formStyles.label}>Email</Text>
                         <TextInput
                             placeholder="Introduce tu email"
@@ -70,15 +101,15 @@ export default function Register() {
                         <TextInput
                             placeholder="Confirma tu contraseña"
                             secureTextEntry
-                            value={values.confirmPassword}
-                            onChangeText={handleChange('confirmPassword')}
+                            value={values.confirm_password}
+                            onChangeText={handleChange('confirm_password')}
                             style={[
                                 formStyles.input,
-                                touched.confirmPassword && errors.confirmPassword && formStyles.inputError,
+                                touched.confirm_password && errors.confirm_password && formStyles.inputError,
                             ]}
                         />
-                        {touched.confirmPassword && errors.confirmPassword && (
-                            <Text style={formStyles.errorText}>{errors.confirmPassword}</Text>
+                        {touched.confirm_password && errors.confirm_password && (
+                            <Text style={formStyles.errorText}>{errors.confirm_password}</Text>
                         )}
 
                         <TouchableOpacity onPress={() => {
