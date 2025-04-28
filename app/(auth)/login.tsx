@@ -11,8 +11,7 @@ import { saveSession } from '@/utils/sessions';
 import {useEffect, useState} from "react";
 import { formStyles } from '@/styles/formStyles';
 import Toast from "react-native-toast-message";
-import useColors from "@/constants/useColors";
-
+import useStyles from "@/constants/useStyles";
 const loginSchema = Yup.object().shape({
     email: Yup.string().email('Email inválido').required('Requerido'),
     password: Yup.string().min(6, 'Mínimo 6 caracteres').required('Requerido'),
@@ -23,14 +22,13 @@ export default function Login() {
     const navigationState = useRootNavigationState(); // Espera a que la navegación esté lista
     const dispatch = useDispatch<AppDispatch>();
     const [isReady, setIsReady] = useState(false);
-    const {colors}=useColors();
 
     useEffect(() => {
         if (navigationState?.key) {
             setIsReady(true); // Solo marcamos como listo cuando la navegación esté montada
         }
     }, [navigationState]);
-
+    const {styles}=useStyles(formStyles)
     const handleLogin = async (values: { email: string; password: string }) => {
         try {
             const response = await API.post<AuthResponse>('/auth/login', values);
@@ -49,16 +47,16 @@ export default function Login() {
     };
 
     return (
-        <View style={formStyles.container}>
+        <View style={styles.container}>
             <Formik
                 initialValues={{ email: '', password: '' }}
                 validationSchema={loginSchema}
                 onSubmit={handleLogin}
             >
                 {({ handleChange, handleSubmit, values, errors, touched }) => (
-                    <View style={formStyles.form}>
-                        <Text style={formStyles.labelBrand}>ChivoSmart</Text>
-                        <Text style={formStyles.label}>Email</Text>
+                    <View style={styles.form}>
+                        <Text style={styles.labelBrand}>test</Text>
+                        <Text style={styles.label}>Email</Text>
                         <TextInput
                             placeholder="Introduce tu email"
                             value={values.email}
@@ -66,33 +64,33 @@ export default function Login() {
                             autoCapitalize="none"
                             keyboardType="email-address"
                             style={[
-                                formStyles.input,
-                                touched.email && errors.email && formStyles.inputError,
+                                styles.input,
+                                touched.email && errors.email && styles.inputError,
                             ]}
                         />
-                        {touched.email && errors.email && <Text style={formStyles.errorText}>{errors.email}</Text>}
+                        {touched.email && errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
 
-                        <Text style={formStyles.label}>Contraseña</Text>
+                        <Text style={styles.label}>Contraseña</Text>
                         <TextInput
                             placeholder="Introduce tu contraseña"
                             secureTextEntry
                             value={values.password}
                             onChangeText={handleChange('password')}
                             style={[
-                                formStyles.input,
-                                touched.password && errors.password && formStyles.inputError,
+                                styles.input,
+                                touched.password && errors.password && styles.inputError,
                             ]}
                         />
-                        {touched.password && errors.password && <Text style={formStyles.errorText}>{errors.password}</Text>}
+                        {touched.password && errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
 
                         <TouchableOpacity onPress={()=> {
                             handleSubmit();
-                        }} style={formStyles.button}>
-                            <Text style={formStyles.buttonText}>Iniciar sesión</Text>
+                        }} style={styles.button}>
+                            <Text style={styles.buttonText}>Iniciar sesión</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => router.push('/register')}>
-                            <Text style={formStyles.linkText}>¿No tienes cuenta? Regístrate</Text>
+                            <Text style={styles.linkText}>¿No tienes cuenta? Regístrate</Text>
                         </TouchableOpacity>
                     </View>
                 )}

@@ -20,22 +20,22 @@ export default function Home() {
     };
 
     return (
-        <View style={formStyles.container}>
-            <Text style={formStyles.title_one}>Obra en construcción</Text>
+        <View style={styles.container}>
+            <Text style={styles.title_one}>Obra en construcción</Text>
             <MaterialIcons name={'construction'} size={100}  color={'#E1DED4'}></MaterialIcons>
-            <View style={formStyles.form}>
+            <View style={styles.form}>
 
             <TouchableOpacity
                 onPress={handleLogout}
-                style={formStyles.button}>
-                <Text style={formStyles.buttonText}>Logout</Text>
+                style={styles.button}>
+                <Text style={styles.buttonText}>Logout</Text>
             </TouchableOpacity>
 
 
             <TouchableOpacity
                 onPress={() => router.push('/profile')}
-                style={formStyles.button}>
-                    <Text style={formStyles.linkText}>Profile</Text>
+                style={styles.button}>
+                    <Text style={styles.linkText}>Profile</Text>
                 </TouchableOpacity>
             </View>
         </View>

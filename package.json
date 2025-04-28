@@ -15,6 +15,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@expo-google-fonts/geist": "^0.3.1",
     "@expo/vector-icons": "^14.0.2",
     "@lottiefiles/dotlottie-react": "^0.6.5",
     "@react-navigation/bottom-tabs": "^7.2.0",
