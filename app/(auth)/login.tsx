@@ -11,6 +11,7 @@ import { saveSession } from '@/utils/sessions';
 import {useEffect, useState} from "react";
 import { formStyles } from '@/styles/formStyles';
 import Toast from "react-native-toast-message";
+import useColors from "@/constants/useColors";
 
 const loginSchema = Yup.object().shape({
     email: Yup.string().email('Email inválido').required('Requerido'),
@@ -22,6 +23,7 @@ export default function Login() {
     const navigationState = useRootNavigationState(); // Espera a que la navegación esté lista
     const dispatch = useDispatch<AppDispatch>();
     const [isReady, setIsReady] = useState(false);
+    const {colors}=useColors();
 
     useEffect(() => {
         if (navigationState?.key) {

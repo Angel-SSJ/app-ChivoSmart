@@ -1,11 +1,10 @@
 import {
   DarkTheme,
   DefaultTheme,
-  ThemeProvider,
 } from "@react-navigation/native";
 import {Navigator, Stack} from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import 'react-native-reanimated';
 import {Provider, useDispatch} from "react-redux";
 import { store } from '@/redux/store';
@@ -16,7 +15,8 @@ import Slot = Navigator.Slot;
 import {StatusBar} from "expo-status-bar";
 import Toast from "react-native-toast-message";
 import ToastConfig from "@/components/ToastConfig";
-
+import {ThemeProvider} from "@/constants/ThemeContext";
+import {RootNavigator} from "@/constants/RootNavigator"
 SplashScreen.preventAutoHideAsync();
 
 function SessionLoader({ children }: { children: React.ReactNode }) {
@@ -48,7 +48,8 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <ThemeProvider>
+      <RootNavigator/>
       <Provider store={store}>
         <SessionLoader>
           <Stack screenOptions={{ headerShown: false }} />
