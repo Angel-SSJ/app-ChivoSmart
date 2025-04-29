@@ -18,45 +18,15 @@ import Toast from "react-native-toast-message";
 import ToastConfig from "@/components/ToastConfig";
 import {ThemeProvider} from "@/constants/ThemeContext";
 import {RootNavigator} from "@/constants/RootNavigator"
+import NavbarComponent from "@/components/navigationBar/NavbarComponent";
 SplashScreen.preventAutoHideAsync();
 
-function SessionLoader({ children }: { children: React.ReactNode }) {
-  const [ready, setReady] = useState(false);
-  const router=useRouter()
-  const dispatch = useDispatch();
-  console.log('SessionLoader', ready);
-  router.push('/home')
-
-  useEffect(() => {
-    const init = async () => {
-      const session = await getSession();
-      if (session) {
-        dispatch(setCredentials(session));
-      }
-      setReady(true);
-      await SplashScreen.hideAsync();
-      router.push('/home')
-    };
-    router.push('/home')
-    init();
-
-  }, [ready,setReady]);
-
-
-  if (!ready) return <View style={{flex: 1, backgroundColor: '#fff'}}/>;
-  return <>{children}</>;
-}
   // @ts-ignore
   export default function RootLayout() {
-
     return (
         <ThemeProvider>
           <RootNavigator/>
-          <Provider store={store}>
-            <SessionLoader>
-              <Toast config={ToastConfig}/>
-            </SessionLoader>
-          </Provider>
+            <NavbarComponent/>
         </ThemeProvider>
     );
   }

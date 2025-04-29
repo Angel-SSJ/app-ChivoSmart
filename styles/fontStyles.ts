@@ -6,7 +6,7 @@ import {Geist_900Black} from "@expo-google-fonts/geist/900Black";
 import {Geist_700Bold} from "@expo-google-fonts/geist/700Bold";
 
 
-export const formStyles = StyleSheet.create({
+export const fontStyles = StyleSheet.create({
     primaryTitle:{
         fontSize:44,
         fontFamily:'Geist_900Black',

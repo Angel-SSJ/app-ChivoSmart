@@ -22,7 +22,7 @@ export default function Login() {
     const navigationState = useRootNavigationState(); // Espera a que la navegación esté lista
     const dispatch = useDispatch<AppDispatch>();
     const [isReady, setIsReady] = useState(false);
-
+    router.push('/(app)/home')
     useEffect(() => {
         if (navigationState?.key) {
             setIsReady(true); // Solo marcamos como listo cuando la navegación esté montada
@@ -89,8 +89,8 @@ export default function Login() {
                             <Text style={styles.buttonText}>Iniciar sesión</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => router.push('/register')}>
-                            <Text style={styles.linkText}>¿No tienes cuenta? Regístrate</Text>
+                        <TouchableOpacity onPress={() => router.push('/home')}>
+                            <Text style={styles.linkText}>¿Holasss</Text>
                         </TouchableOpacity>
                     </View>
                 )}
