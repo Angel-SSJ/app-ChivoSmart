@@ -1,4 +1,4 @@
-import * as SecureStore from 'expo-secure-store';
+import * as SecureStore from 'expo-secure-store';// NO PERMITE HACERLO EN WEB
 import { AuthResponse } from '@/types/auth';
 
 const KEY = 'auth-session';
