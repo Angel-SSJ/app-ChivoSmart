@@ -5,7 +5,8 @@ import * as Yup from 'yup';
 import API from '@/api/api';
 import {formStyles} from '@/styles/formStyles';
 import Toast from "react-native-toast-message";
-import useStyles from "@/constants/useStyles";
+import React from 'react';
+
 
 const registerSchema = Yup.object().shape({
     first_name:Yup.string().required('Requerido'),
@@ -19,7 +20,6 @@ const registerSchema = Yup.object().shape({
 // @ts-ignore
 export default function Register() {
     const router = useRouter();
-    const {styles}=useStyles(formStyles)
     const handleRegister = async (values: { email: string; password: string;first_name:string; last_name:string }) => {
         try {
             await API.post('/auth/register', values); // adapt to your API fields
@@ -34,16 +34,16 @@ export default function Register() {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={formStyles.container}>
             <Formik
                 initialValues={{ email: '', password: '', confirm_password: '' , last_name:'', first_name:'', }}
                 validationSchema={registerSchema}
                 onSubmit={handleRegister}
             >
                 {({ handleChange, handleSubmit, values, errors, touched }) => (
-                    <View style={styles.form}>
-                        <Text style={styles.labelBrand}>ChivoSmart</Text>
-                        <Text style={styles.label}>Nombre</Text>
+                    <View style={formStyles.form}>
+                        <Text style={formStyles.labelBrand}>ChivoSmart</Text>
+                        <Text style={formStyles.label}>Nombre</Text>
                         <TextInput
                             placeholder="Introduce tu nombre"
                             value={values.first_name}
@@ -51,13 +51,13 @@ export default function Register() {
                             autoCapitalize="none"
                             keyboardType="default"
                             style={[
-                                styles.input,
-                                touched.first_name && errors.first_name && styles.inputError,
+                                formStyles.input,
+                                touched.first_name && errors.first_name && formStyles.inputError,
                             ]}
                         />
-                        {touched.first_name && errors.first_name && <Text style={styles.errorText}>{errors.first_name}</Text>}
+                        {touched.first_name && errors.first_name && <Text style={formStyles.errorText}>{errors.first_name}</Text>}
 
-                        <Text style={styles.label}>Apellido</Text>
+                        <Text style={formStyles.label}>Apellido</Text>
                         <TextInput
                             placeholder="Introduce tu apellido"
                             value={values.last_name}
@@ -65,13 +65,13 @@ export default function Register() {
                             autoCapitalize="none"
                             keyboardType={'default'}
                             style={[
-                                styles.input,
-                                touched.last_name && errors.last_name && styles.inputError,
+                                formStyles.input,
+                                touched.last_name && errors.last_name && formStyles.inputError,
                             ]}
                         />
-                        {touched.last_name && errors.last_name && <Text style={styles.errorText}>{errors.last_name}</Text>}
+                        {touched.last_name && errors.last_name && <Text style={formStyles.errorText}>{errors.last_name}</Text>}
 
-                        <Text style={styles.label}>Email</Text>
+                        <Text style={formStyles.label}>Email</Text>
                         <TextInput
                             placeholder="Introduce tu email"
                             value={values.email}
@@ -79,48 +79,48 @@ export default function Register() {
                             autoCapitalize="none"
                             keyboardType="email-address"
                             style={[
-                                styles.input,
-                                touched.email && errors.email && styles.inputError,
+                                formStyles.input,
+                                touched.email && errors.email && formStyles.inputError,
                             ]}
                         />
-                        {touched.email && errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
+                        {touched.email && errors.email && <Text style={formStyles.errorText}>{errors.email}</Text>}
 
-                        <Text style={styles.label}>Contraseña</Text>
+                        <Text style={formStyles.label}>Contraseña</Text>
                         <TextInput
                             placeholder="Introduce tu contraseña"
                             secureTextEntry
                             value={values.password}
                             onChangeText={handleChange('password')}
                             style={[
-                                styles.input,
-                                touched.password && errors.password && styles.inputError,
+                                formStyles.input,
+                                touched.password && errors.password && formStyles.inputError,
                             ]}
                         />
-                        {touched.password && errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
+                        {touched.password && errors.password && <Text style={formStyles.errorText}>{errors.password}</Text>}
 
-                        <Text style={styles.label}>Confirmar Contraseña</Text>
+                        <Text style={formStyles.label}>Confirmar Contraseña</Text>
                         <TextInput
                             placeholder="Confirma tu contraseña"
                             secureTextEntry
                             value={values.confirm_password}
                             onChangeText={handleChange('confirm_password')}
                             style={[
-                                styles.input,
-                                touched.confirm_password && errors.confirm_password && styles.inputError,
+                                formStyles.input,
+                                touched.confirm_password && errors.confirm_password && formStyles.inputError,
                             ]}
                         />
                         {touched.confirm_password && errors.confirm_password && (
-                            <Text style={styles.errorText}>{errors.confirm_password}</Text>
+                            <Text style={formStyles.errorText}>{errors.confirm_password}</Text>
                         )}
 
                         <TouchableOpacity onPress={() => {
                             handleSubmit();
-                        }} style={styles.button}>
-                            <Text style={styles.buttonText}>Registrarse</Text>
+                        }} style={formStyles.button}>
+                            <Text style={formStyles.buttonText}>Registrarse</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => router.push('/login')}>
-                            <Text style={styles.linkText}>¿Ya tienes cuenta? Inicia sesión</Text>
+                            <Text style={formStyles.linkText}>¿Ya tienes cuenta? Inicia sesión</Text>
                         </TouchableOpacity>
                     </View>
                 )}
