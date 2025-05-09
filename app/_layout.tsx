@@ -48,6 +48,9 @@ function SessionLoader({ children }: { children: React.ReactNode }) {
 }
 
 
+
+
+
 const commonScreenOptions = {
     headerShown: false,
     animation: "fade_from_bottom",
@@ -72,17 +75,28 @@ const screens=[
 
 export default function RootLayout() {
 
+    {/*  const [fontsLoaded] = useFonts({
+        Black: require("../assets/fonts/Geist/Geist-Black.ttf"),
+        Bold: require("../assets/fonts/Geist/Geist-Bold.ttf"),
+        ExtraBold: require("../assets/fonts/Geist/Geist-ExtraBold.ttf"),
+        ExtraLight: require("../assets/fonts/Geist/Geist-ExtraLight.ttf"),
+        Light: require("../assets/fonts/Geist/Geist-Light.ttf"),
+        Medium: require("../assets/fonts/Geist/Geist-Medium.ttf"),
+        Regular: require("../assets/fonts/Geist/Geist-Regular.ttf"),
+        SemiBold: require("../assets/fonts/Geist/Geist-SemiBold.ttf"),
+        Thin: require("../assets/fonts/Geist/Geist-Thin.ttf"),
+    });
+
+    useEffect(() => {
+        if( fontsLoaded){
+            SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
+    if(!fontsLoaded) return null;*/}
+
 //function to notification to registered
 
-//fontloader
-
-
 const colorScheme = useColorScheme();
-
-
-
-
-
 
 
 return (

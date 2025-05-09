@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "fintech-app",
-    "slug": "fintech-app",
+    "name": "Chivo Smart",
+    "slug": "Chivo-Smart",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/icon-logo-testing.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -12,10 +12,7 @@
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
+      "icon":"./assets/images/icon-logo-testing.png",
       "package": "com.fabricio23r.fintechapp"
     },
     "web": {
@@ -31,7 +28,7 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#1C1C1D"
         }
       ],
       "expo-secure-store",

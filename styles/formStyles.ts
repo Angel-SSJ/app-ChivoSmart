@@ -3,15 +3,17 @@ import {Colors} from "@/constants/Colors";
 
 
 
+// @ts-ignore
 export const formStyles = StyleSheet.create({
 
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20,
+        padding: 10,
         width: '100%',
         backgroundColor: Colors.light.background,
+        position:'relative'
     },
     form: {
         width: '100%',
@@ -55,6 +57,7 @@ export const formStyles = StyleSheet.create({
         padding:40,
 
 
+
     },
     button: {
         backgroundColor:Colors.light.purple,
@@ -79,4 +82,29 @@ export const formStyles = StyleSheet.create({
         color: Colors.light.blue,
         fontSize: 16,
     },
+
+    primaryTitle:{
+        fontSize:44,
+        fontFamily:'Black',
+    },
+    bodyTextRegular:{
+        fontSize:16,
+        fontFamily:'Regular',
+    },
+    bodyTextXs:{
+        fontSize:14,
+        fontFamily:'Regular',
+    },
+    bodyTextL:{
+        fontSize:20,
+        fontFamily:'SemiBold',
+    },
+    bodytextM:{
+        fontSize:18,
+        fontFamily:'Bold',
+    },
+    FourthTitle:{
+        fontSize:18,
+        fontFamily:'Bold',
+    }
 });
