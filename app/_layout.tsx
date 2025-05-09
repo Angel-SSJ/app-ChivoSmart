@@ -1,3 +1,5 @@
+// @ts-ignore
+
 import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
 import {DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import {Navigator, Stack} from 'expo-router';
@@ -8,14 +10,14 @@ import {Provider, useDispatch} from "react-redux";
 import { store } from '@/redux/store';
 import {getSession} from "@/utils/sessions";
 import {setCredentials} from "@/redux/authSlice";
-import {useColorScheme, View} from "react-native";
-//import Slot = Navigator.Slot;
+import {StyleSheet, useColorScheme, View} from "react-native";
 import {StatusBar} from "expo-status-bar";
 import Toast from "react-native-toast-message";
 import toastConfig from "@/components/ToastConfig";
 
 import {useFonts} from "expo-font";
 import { Colors } from "@/constants/Colors";
+import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({
@@ -71,58 +73,85 @@ const screens=[
 
 
 ]
+const [fontsLoaded] = useFonts({
+    'Black': require("../assets/fonts/Geist/Geist-Black.ttf"),
+    'Bold': require("../assets/fonts/Geist/Geist-Bold.ttf"),
+    'ExtraBold': require("../assets/fonts/Geist/Geist-ExtraBold.ttf"),
+    'ExtraLight': require("../assets/fonts/Geist/Geist-ExtraLight.ttf"),
+    'Light': require("../assets/fonts/Geist/Geist-Light.ttf"),
+    'Medium': require("../assets/fonts/Geist/Geist-Medium.ttf"),
+    'Regular': require("../assets/fonts/Geist/Geist-Regular.ttf"),
+    'SemiBold': require("../assets/fonts/Geist/Geist-SemiBold.ttf"),
+    'Thin': require("../assets/fonts/Geist/Geist-Thin.ttf"),
+});
+
+useEffect(() => {
+    if( fontsLoaded){
+        SplashScreen.hideAsync();
+    }
+}, [fontsLoaded]);
+{/*if(!fontsLoaded) return null;*/}
+
 
 
 export default function RootLayout() {
 
-    {/*  const [fontsLoaded] = useFonts({
-        Black: require("../assets/fonts/Geist/Geist-Black.ttf"),
-        Bold: require("../assets/fonts/Geist/Geist-Bold.ttf"),
-        ExtraBold: require("../assets/fonts/Geist/Geist-ExtraBold.ttf"),
-        ExtraLight: require("../assets/fonts/Geist/Geist-ExtraLight.ttf"),
-        Light: require("../assets/fonts/Geist/Geist-Light.ttf"),
-        Medium: require("../assets/fonts/Geist/Geist-Medium.ttf"),
-        Regular: require("../assets/fonts/Geist/Geist-Regular.ttf"),
-        SemiBold: require("../assets/fonts/Geist/Geist-SemiBold.ttf"),
-        Thin: require("../assets/fonts/Geist/Geist-Thin.ttf"),
-    });
-
-    useEffect(() => {
-        if( fontsLoaded){
-            SplashScreen.hideAsync();
-        }
-    }, [fontsLoaded]);
-    if(!fontsLoaded) return null;*/}
 
 //function to notification to registered
 
 const colorScheme = useColorScheme();
-
-
 return (
+
     <ThemeProvider value={colorScheme=='dark'?DarkTheme:DefaultTheme}>
-      <Provider store={store}>
-    <SessionLoader>
-          <Stack>
-            {screens.map(({name,options}) =>(
-                <Stack.Screen
-                key={name}
-                name={name}
-                options={{
-                  ...(commonScreenOptions as NativeStackNavigationOptions),
-                  ...options,
-                }}
-                />
-            )  )}
-          </Stack>
-          <StatusBar
-              style={colorScheme === "dark" ? "dark" : "light"}
-              backgroundColor={"transparent"}
-              animated={true}
-          />
-    </SessionLoader>
-          <Toast config={toastConfig} />
-      </Provider>
+        <Provider store={store}>
+            <SessionLoader>
+                  <Stack >
+                    {screens.map(({name,options}) =>(
+                        <Stack.Screen
+                        key={name}
+                        name={name}
+                        options={{
+                          ...(commonScreenOptions as NativeStackNavigationOptions),
+                          ...options,
+                        }}
+                        />
+                    )  )}
+                </Stack>
+                <StatusBar
+                      style={colorScheme === "dark" ? "dark" : "light"}
+                      backgroundColor={Colors.dark.white}
+                      animated={true}
+                  />
+            </SessionLoader>
+            <Toast config={toastConfig} />
+        </Provider>
+        
     </ThemeProvider>
-);
+        );
 }
+
+export const fontStyles=StyleSheet.create({
+    primaryTitle:{
+        fontSize:44,
+        fontFamily:'Black',
+    },
+    bodyTextRegular:{
+        fontSize:16,
+        fontFamily:'Regular',
+    },
+    bodyTextXs:{
+        fontSize:14,
+        fontFamily:'Regular',
+    },
+    bodyTextL:{
+        fontSize:20,
+        fontFamily:'SemiBold',
+    },bodytextM:{
+        fontSize:18,
+        fontFamily:'Bold',
+    },
+    FourthTitle:{
+        fontSize:18,
+        fontFamily:'Bold',
+    }
+})
